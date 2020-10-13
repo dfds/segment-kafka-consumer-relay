@@ -20,7 +20,7 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - script: npm install -g typescript && npm install && tsc -b    
+    - script: npm install typescript && npm install && tsc -b    
     - task: Docker@2
       displayName: Build an image
       inputs:
