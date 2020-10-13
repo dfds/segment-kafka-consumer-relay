@@ -22,16 +22,17 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        arguments: '-t segment-kafka-consumer-relay:$(Build.BuildId)'
+        imageName: 'segment/segment-kafka-consumer-relay:$(Build.BuildNumber)'
+
     - task: ECRPushImage@1
       displayName: 'Push backend image to Shared ECR'
       inputs:
         awsCredentials: 'Shared-Prod ECR-Push'
         regionName: 'eu-central-1'
-        sourceImageName: 'segment-kafka-consumer-relay'        
+        sourceImageName: 'segment/segment-kafka-consumer-relay'        
         sourceImageTag: '$(Build.BuildNumber)'
-        repositoryName: 'segment'
-        pushTag: '$(Build.BuildId)'
+        repositoryName: 'segment/segment-kafka-consumer-relay'
+        pushTag: '$(Build.BuildNumber)'
                 
     - task: PublishBuildArtifacts@1
       displayName: "Publish Artifact: k8s manifests"
