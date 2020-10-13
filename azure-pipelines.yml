@@ -8,9 +8,6 @@ trigger:
 resources:
 - repo: self
 
-variables:
-  tag: '$(Build.BuildId)'
-
 stages:
 - stage: Build
   displayName: Build image
@@ -25,16 +22,15 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        arguments: '-t segment-kafka-consumer-relay:$(tag)'
-
+        arguments: '-t segment-kafka-consumer-relay:$(Build.BuildId)'
     - task: ECRPushImage@1
       displayName: 'Push backend image to Shared ECR'
       inputs:
         awsCredentials: 'Shared-Prod ECR-Push'
         regionName: 'eu-central-1'
-        imageSource: 'imagename'
-        sourceImageName: 'segment-kafka-consumer-relay'
-        repositoryName: 'dfds/segment-kafka-consumer-relay'
+        sourceImageName: 'segment-kafka-consumer-relay'        
+        sourceImageTag: '$(Build.BuildNumber)'
+        repositoryName: '825548240362.dkr.ecr.eu-central-1.amazonaws.com/segment'
         pushTag: '$(Build.BuildId)'
                 
     - task: PublishBuildArtifacts@1
