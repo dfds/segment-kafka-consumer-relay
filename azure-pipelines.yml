@@ -30,7 +30,7 @@ stages:
         regionName: 'eu-central-1'
         sourceImageName: 'segment-kafka-consumer-relay'        
         sourceImageTag: '$(Build.BuildNumber)'
-        repositoryName: '825548240362.dkr.ecr.eu-central-1.amazonaws.com/segment'
+        repositoryName: 'segment'
         pushTag: '$(Build.BuildId)'
                 
     - task: PublishBuildArtifacts@1
