@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- master
+- main
 
 resources:
 - repo: self
@@ -25,5 +25,20 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+        arguments: '-t segment-kafka-consumer-relay:$(tag)'
+
+    - task: ECRPushImage@1
+      displayName: 'Push backend image to Shared ECR'
+      inputs:
+        awsCredentials: 'Shared-Prod ECR-Push'
+        regionName: 'eu-central-1'
+        imageSource: 'imagename'
+        sourceImageName: 'segment-kafka-consumer-relay'
+        repositoryName: 'dfds/segment-kafka-consumer-relay'
+        pushTag: '$(Build.BuildId)'
+                
+    - task: PublishBuildArtifacts@1
+      displayName: "Publish Artifact: k8s manifests"
+      inputs:
+        PathtoPublish: k8s
+        ArtifactName: manifests
