@@ -1,5 +1,5 @@
 import { Kafka, KafkaConfig, Consumer, ConsumerConfig } from "kafkajs";
-import { ApiClient } from "../segment/ApiClient"
+import { ApiClient } from "../segment/apiClient"
 import { JsonToEventMapper } from "../mapping/jsonToEventMapper"
 
 export type ConsumerRelayConfig = { segmentApiUri: string } & KafkaConfig & ConsumerConfig;

@@ -1,11 +1,10 @@
 FROM node:13
 
 WORKDIR /app
-
-COPY package.json /app
+COPY . .
 
 RUN npm install
+RUN npm install -g typescript
+RUN tsc -b
 
-COPY ./dist /app
-
-CMD node app.js
+CMD node ./dist/app.js
