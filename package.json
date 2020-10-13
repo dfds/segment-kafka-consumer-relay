@@ -1,0 +1,25 @@
+{
+  "name": "segment-kafka-consumer-relay",
+  "version": "1.0.0",
+  "description": "segment-kafka-consumer-relay",
+  "main": "dist/app.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dfds/segment-kafka-consumer-relay.git"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "kafkajs": "^1.14.0",
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.2",
+    "typescript": "^3.4.3"
+  }
+}
