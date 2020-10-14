@@ -3,7 +3,10 @@ kind: Deployment
 metadata:
   name: segment-ui-beorp-kafka-consume-relay-deployment
 spec:
-  replicas: 1
+  replicas: 1  
+  selector:
+    matchLabels:
+      app: nodejs
   template:
     metadata:
       labels:
