@@ -39,3 +39,13 @@ stages:
       inputs:
         PathtoPublish: k8s
         ArtifactName: manifests
+
+    # Apply Kubernetes manifests
+    - task: Kubernetes@1
+      displayName: 'Apply manifests'
+      inputs:
+        connectionType: Kubernetes Service Connection
+        kubernetesServiceEndpoint: 'Kubernetes-Hellman-Segment-Deploy'
+        namespace: 'segment-ui-beorp'
+        command: apply
+        arguments: '-f $(Pipeline.Workspace)/manifests/'
