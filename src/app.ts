@@ -19,3 +19,5 @@ const config: ConsumerRelayConfig = {
 const relay: ConsumerRelay = new ConsumerRelay(config);
 
 relay.connect('pub.paxeventintegration-lgyny.segmentpoc', false);
+
+console.log('Kafka relay initialized');
