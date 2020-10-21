@@ -20,4 +20,4 @@ const relay: ConsumerRelay = new ConsumerRelay(config);
 
 relay.connect('pub.paxeventintegration-lgyny.segmentpoc', false); // true will fetch events from the root
 
-console.log('Relay initalized');
+console.log('Relay initalized.');
